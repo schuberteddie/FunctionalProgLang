@@ -1,0 +1,16 @@
+
+let exit(code :: Integer) = /@ exit @/
+
+let length(l :: List) = /@ length @/
+
+let head(l :: List) = l !! 0
+
+let tail(l :: List) = /@ tail @/
+
+let init(l :: List) = /@ init @/
+
+let end(l :: List) = l !! (length(l)-1)
+
+let reverse(l :: List) = if (length(l) == 0)
+                             then []
+                         else end(l):reverse(init(l))

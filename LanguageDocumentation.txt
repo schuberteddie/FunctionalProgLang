@@ -1,0 +1,106 @@
+FPL  :  Functional Programming Language Documentation
+
+The complete context-free grammar can be located at src/parser.y
+
+Each line in this language is either a type declaration, a function declaration
+or an expression to be executed.
+
+Type Declarations:
+    type <type identifier> = <type definition>
+	
+	Type identifiers always begin with a capital letter, to keep them clearly
+	separate from function and parameter identifiers. The language supports
+	seven primitive built-in types: Integer, Float, Boolean, Character, List,
+	Object, and String. New types can be made using some combination of these
+	primitives in a type definition. 
+	
+	To define a list of a certain type, wrap it in brackets, like so:
+		type String = [Character]
+	
+	To define an object with fields of certain types, specify them like so:
+		type Node = {first :: Integer, second :: String}
+		
+	Types can also be built with alernation, like so:
+		type Number = Integer || Float
+		
+	These types can then be used in function declarations to ensure that 
+	arguments are of the appropriate data type. These type checks are performed
+	at runtime.
+	
+Function Declarations:
+	let <identifier>(<parameters>) = <expressions>
+	
+	Function identifiers always begin with a lower case letter. A function can
+	have no parameters, or many. Parameters can be required to have particular
+	types, as mentioned above, using the :: operator following a named 
+	parameter. Parameters are then separated by commas. Possible expressions
+	will be discussed in the next section. The following is a valid function
+	definition:
+	
+		let pow(base :: Float, exponent :: Float) = base^exponent
+		
+	But parameters do not need type requirements.
+	
+Expressions:
+	
+	Expressions are the main unit of execution for this language. The following
+	operators can be used in this language for forming expressions:
+	
+		+
+			addition
+		-
+			subtraction
+		*
+			multiplication
+		/
+			division
+		%
+			modulo
+		^
+			exponentiation
+		++
+			list concatenation
+		:
+			prepending to a list
+		!!
+			list access
+		.
+			object access
+		!
+			logical not
+		||
+			logical or
+		&&
+			logical and
+		== 
+			logical equals
+		!=
+			logical not equals
+		>,>=,<,<=
+			numerical comparisons
+			
+	All of which can be combined to create complex operations. A function call
+	can also be used as an expression, like so:
+		
+		identifier(params)
+		
+	As well as referring to constant values.
+	
+Conditionals:
+
+	if <expression> then <expression> else <expression>
+	
+	Conditionals are built in this language to always require a then and else.
+	These can also be used as expressions themselves. An if statement will
+	resolve its condition first before queueing any other expression for
+	exection, unlike other nested operations, which will always execute their
+	inner operations first.
+	
+Extras:
+
+	A function definition of the form:
+	
+		/@ identifier @/
+		
+	refers to a native c++ function located in src/native_functions.cpp
+		
